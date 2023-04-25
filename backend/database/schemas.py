@@ -59,3 +59,76 @@ cars_schema = CarSchema(many=True)
 
 
 # TODO: Add your schemas below
+class RecipeSchema(ma.Schema):
+    id = fields.Integer(primary_key=True)
+    name = fields.String(required=True)
+    ingredients = fields.String(nullable=False)
+    instructions = fields.String(nullable=False)
+    category = fields.String()
+    ethnicity = fields.String()
+    user_id = fields.Integer()
+    user = ma.Nested(UserSchema, many=False)
+    class Meta:
+        fields = ("id", "name", "ingredients", "instructions", "category", "ethnicity", "user_id", "user")
+
+    @post_load
+    def create_recipe(self, data, **kwargs):
+        return Recipe(**data)
+
+recipe_schema = RecipeSchema()
+recipes_schema = RecipeSchema(many=True)
+
+
+class CommentSchema(ma.Schema):
+    id = fields.Integer(primary_key=True)
+    recipe_id = fields.Integer(required=True)
+    text = fields.String(required=True)
+    rating = fields.Integer(required=True)
+    user_id = fields.Integer()
+    user = ma.Nested(UserSchema, many=False)
+    class Meta:
+        fields = ("id", "recipe_id", "text", "rating", "user_id", "user")
+
+    @post_load
+    def create_comment(self, data, **kwargs):
+        return Comment(**data)
+    
+comment_schema = CommentSchema()
+comments_schema = CommentSchema(many=True)
+
+
+class FavoriteSchema(ma.Schema):
+    id = fields.Integer(primary_key=True)
+    recipe_id = fields.Integer(required=True)
+    name = fields.String(required=True)
+    thumbnail_url = fields.String()
+    user_id = fields.Integer()
+    user = ma.Nested(UserSchema, many=False)
+    class Meta:
+        fields = ("id", "recipe_id", "name", "thumbnail_url", "user_id", "user")
+
+    @post_load
+    def create_favorite(self, data, **kwargs):
+        return Favorite(**data)
+    
+favorite_schema = FavoriteSchema()
+favorites_schema = FavoriteSchema(many=True) 
+    
+
+class TryLaterSchema(ma.Schema):
+    id = fields.Integer(primary_key=True)
+    recipe_id = fields.Integer(required=True)
+    name = fields.String(required=True)
+    thumbnail_url = fields.String()
+    user_id = fields.Integer()
+    user = ma.Nested(UserSchema, many=False)
+    class Meta:
+        fields = ("id", "recipe_id", "name", "thumbnail_url", "user_id", "user")
+
+    @post_load
+    def create_try_later(self, data, **kwargs):
+        return TryLater(**data)
+    
+try_later_schema = TryLaterSchema()
+try_laters_schema = TryLaterSchema(many=True)
+
