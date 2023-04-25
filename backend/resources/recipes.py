@@ -33,8 +33,9 @@ class UserRecipeResource(Resource):
     @jwt_required()
     def put(self, recipe_id):
         user_id = get_jwt_identity()
-        edit_recipe = Recipe.query.get_or_404(recipe_id)
-        edit_recipe.recipe_id=request.json["recipe_id"]
+        edit_recipe = Recipe.query.get_or_404(user_id, recipe_id)
+        if "recipe_id" in request.json:
+            edit_recipe.recipe_id=request.json["recipe_id"]
         if "name" in request.json:
             edit_recipe.name=request.json["name"]
         if "ingredients" in request.json:
@@ -51,14 +52,13 @@ class UserRecipeResource(Resource):
     @jwt_required()
     def delete(self, recipe_id):
         user_id = get_jwt_identity()
-        delete_recipe = Recipe.query.get_or_404(user_id, recipe_id).first()
+        delete_recipe = Recipe.query.get_or_404(recipe_id)
         db.session.delete(delete_recipe)
         db.session.commit()
         return '', 204
 
 class UserCommentsResource(Resource):
     def post(self):
-
         pass
 
 class UserFavoritesResource(Resource):

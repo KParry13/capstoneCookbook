@@ -59,5 +59,5 @@ def create_routes():
     # TODO: Create files for your Resources in resources folder, add them here
     api.add_resource(AllRecipeResource, '/api/recipes')
     api.add_resource(UserRecipeListResource, '/api/user_recipe')
-    api.add_resource(UserRecipeResource, '/api/user_recipe/<int:recipe_id>')
+    api.add_resource(UserRecipeResource, '/api/recipes/<int:recipe_id>')
     return api
