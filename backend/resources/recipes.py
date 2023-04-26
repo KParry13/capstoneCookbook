@@ -30,10 +30,27 @@ class UserRecipeListResource(Resource):
         return recipe_schema.dump(new_recipe), 201
     
 class UserRecipeResource(Resource):
+    def get(self, recipe_id):
+        comment_list = Comment.query.filter_by(recipe_id=recipe_id).all()
+        comments = []
+        ratings = []
+        for comment in comment_list:
+            comments.append(comment)
+            ratings.append(comment.rating)
+        if len(ratings) > 0:
+            average_rating = sum(ratings) / len(ratings)
+        else:
+            average_rating = "N/A"
+        custom_response = {
+            "reviews": comments_schema.dump(comments),
+            "average_rating": average_rating,
+        }
+        return custom_response, 200
+    
     @jwt_required()
     def put(self, recipe_id):
         user_id = get_jwt_identity()
-        edit_recipe = Recipe.query.get_or_404(user_id, recipe_id)
+        edit_recipe = Recipe.query.get_or_404(recipe_id)
         if "recipe_id" in request.json:
             edit_recipe.recipe_id=request.json["recipe_id"]
         if "name" in request.json:
@@ -58,25 +75,86 @@ class UserRecipeResource(Resource):
         return '', 204
 
 class UserCommentsResource(Resource):
+    @jwt_required()
     def post(self):
-        pass
+        user_id = get_jwt_identity()
+        form_data = request.get_json()
+        new_comment = comment_schema.load(form_data)
+        new_comment.user_id = user_id
+        db.session.add(new_comment)
+        db.session.commit()
+        return recipe_schema.dump(new_comment), 201
+
+class UserCommentListResource(Resource):
+    @jwt_required()
+    def put(self, comment_id):
+        user_id = get_jwt_identity()
+        edit_comment = Comment.query.get_or_404(comment_id)
+        if "comment_id" in request.json:
+            edit_comment.comment_id=request.json["comment_id"]
+        if "text" in request.json:
+            edit_comment.text=request.json["text"]
+        if "rating" in request.json:
+            edit_comment.rating=request.json["rating"]
+        db.session.commit()
+        return comment_schema.dump(edit_comment), 200
+        
+    @jwt_required()
+    def delete(self, comment_id):
+        user_id = get_jwt_identity()
+        delete_comment = Comment.query.get_or_404(comment_id)
+        db.session.delete(delete_comment)
+        db.session.commit()
+        return '', 204
 
 class UserFavoritesResource(Resource):
+    @jwt_required()
     def get(self):
-        pass
-
+        user_id = get_jwt_identity()
+        user_favorites = Favorite.query.filter_by(user_id=user_id)
+        return favorites_schema.dump(user_favorites), 200
+        
+    @jwt_required()
     def post(self):
-        pass
+        user_id = get_jwt_identity()
+        form_data = request.get_json()
+        new_favorite = favorite_schema.load(form_data)
+        new_favorite.user_id = user_id
+        db.session.add(new_favorite)
+        db.session.commit()
+        return favorite_schema.dump(new_favorite), 201
 
-    def delete(self):
-        pass
+class UserFavoriteListResource(Resource):
+    @jwt_required()
+    def delete(self, favorite_id):
+        user_id = get_jwt_identity()
+        delete_favorite = Favorite.query.get_or_404(favorite_id)
+        db.session.delete(delete_favorite)
+        db.session.commit()
+        return '', 204
 
 class UserTryLaterResource(Resource):
+    @jwt_required()
     def get(self):
-        pass
-
+        user_id = get_jwt_identity()
+        user_try_later = TryLater.query.filter_by(user_id=user_id)
+        return try_laters_schema.dump(user_try_later), 200
+    
+    @jwt_required()
     def post(self):
-        pass
-
-    def delete(self):
-        pass
+        user_id = get_jwt_identity()
+        form_data = request.get_json()
+        new_try_later = try_later_schema.load(form_data)
+        new_try_later.user_id = user_id
+        db.session.add(new_try_later)
+        db.session.commit()
+        return try_later_schema.dump(new_try_later), 201
+    
+class UserTryLaterListResource(Resource):
+    @jwt_required()
+    def delete(self, try_later_id):
+        user_id = get_jwt_identity()
+        delete_try_later = TryLater.query.get_or_404(try_later_id)
+        db.session.delete(delete_try_later)
+        db.session.commit()
+        return '', 204

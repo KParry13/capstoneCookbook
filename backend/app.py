@@ -8,7 +8,7 @@ from database.models import db
 from database.schemas import ma
 from resources.auth import LoginResource, RegisterResource
 from resources.cars import AllCarResource, UserCarResource
-from resources.recipes import AllRecipeResource, UserRecipeListResource, UserRecipeResource, UserCommentsResource, UserFavoritesResource, UserTryLaterResource
+from resources.recipes import AllRecipeResource, UserRecipeListResource, UserRecipeResource, UserCommentsResource, UserCommentListResource, UserFavoritesResource, UserFavoriteListResource, UserTryLaterResource, UserTryLaterListResource 
 from dotenv import load_dotenv
 from os import environ
 
@@ -60,4 +60,11 @@ def create_routes():
     api.add_resource(AllRecipeResource, '/api/recipes')
     api.add_resource(UserRecipeListResource, '/api/user_recipe')
     api.add_resource(UserRecipeResource, '/api/recipes/<int:recipe_id>')
+    api.add_resource( UserCommentsResource, '/api/user_comment')
+    api.add_resource( UserCommentListResource, '/api/user_comment/<int:comment_id>')
+    api.add_resource(UserFavoritesResource, '/api/user_favorites')
+    api.add_resource(UserFavoriteListResource, '/api/user_favorites/<int:favorite_id>')
+    api.add_resource(UserTryLaterResource, '/api/user_try_later')
+    api.add_resource(UserTryLaterListResource, '/api/user_try_later/<int:try_later_id>')
+    
     return api
