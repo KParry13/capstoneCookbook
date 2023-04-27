@@ -16,7 +16,9 @@ const Navbar = () => {
           </Link>
         </li>
         <li>
-          <button onclick={() => navigate("/search")}>Search</button>
+        <Link to="/search" style={{ textDecoration: "none", color: "white" }}>
+          <button>Search</button>
+        </Link>
         </li>
         <li>
           {user ? (

@@ -1,12 +1,12 @@
 import React from 'react'
 import useAuth from "../../hooks/useAuth";
 
-const FavoritesPage = () => {
+const AddRecipePage = () => {
     const [user, token] = useAuth();
 
     return ( 
-        <h2>{user.username}'s Favorites</h2>
+        <h2>{user.username}'s Creations</h2>
      );
 }
  
-export default FavoritesPage;
+export default AddRecipePage;

@@ -1,5 +1,6 @@
 import React from "react";
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
 
 import axios from "axios";
@@ -36,6 +37,30 @@ const HomePage = () => {
             {car.year} {car.model} {car.make}
           </p>
         ))}
+        <div>
+          <ul>
+            <li>
+              <Link to='/totry'>
+                <b>Creations To Try</b>
+              </Link>
+            </li>
+            <li>
+              <Link to='/favorites'>
+                <b>Favorites</b>
+              </Link>
+            </li>
+            <li>
+              <Link to='/add'>
+                <b>Add Creation</b>
+              </Link>
+            </li>
+            <li>
+              <Link to='/submitted'>
+                <b>Other Chef's Creation's</b>
+              </Link>
+            </li>
+          </ul>
+        </div>
     </div>
   );
 };

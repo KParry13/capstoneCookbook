@@ -1,4 +1,12 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React from 'react'
 
-<Link to="/search">Search!</Link>
+
+const SearchPage = ( ) => {
+
+
+    return ( 
+        <h2>Search Page</h2>
+     );
+}
+ 
+export default SearchPage;

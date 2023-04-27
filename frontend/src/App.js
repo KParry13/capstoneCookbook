@@ -6,6 +6,11 @@ import "./App.css";
 import HomePage from "./pages/HomePage/HomePage";
 import LoginPage from "./pages/LoginPage/LoginPage";
 import RegisterPage from "./pages/RegisterPage/RegisterPage";
+import SearchPage from "./pages/SearchPage/SearchPage";
+import UserSubmitted from "./pages/UserSubmitted/UserSubmitted";
+import RecipesToTry from "./pages/RecipesToTry/RecipesToTry";
+import FavoritesPage from "./pages/FavoritesPage/FavoritesPage";
+import AddRecipePage from "./pages/AddRecipePage/AddRecipePage";
 
 // Component Imports
 import Navbar from "./components/NavBar/NavBar";
@@ -27,6 +32,38 @@ function App() {
             </PrivateRoute>
           }
         />
+        <Route 
+          path="/submitted"
+          element={
+            <PrivateRoute>
+              <UserSubmitted />
+            </PrivateRoute>
+          }
+          />
+          <Route
+            path="/totry"
+            element={
+              <PrivateRoute>
+                <RecipesToTry />
+              </PrivateRoute>
+            }
+            />
+            <Route
+            path="/favorites"
+            element={
+              <PrivateRoute>
+                <FavoritesPage />
+              </PrivateRoute>
+            }
+            />  
+            <Route
+            path="/add"
+            element={
+              <PrivateRoute>
+                <AddRecipePage />
+              </PrivateRoute>
+            }
+            />
         <Route path="/register" element={<RegisterPage />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/search" element={<SearchPage />} />
