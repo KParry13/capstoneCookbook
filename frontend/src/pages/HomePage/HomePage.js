@@ -30,32 +30,40 @@ const HomePage = () => {
   return (
     <div className="container">
       {console.log(user)}
-      <h1>Home Page for {user.username}!</h1>
-      {cars &&
+      <h1>{user.username}'s Page!</h1>
+      {/* {cars &&
         cars.map((car) => (
           <p key={car.id}>
             {car.year} {car.model} {car.make}
           </p>
-        ))}
+        ))} */}
         <div>
           <ul>
             <li>
               <Link to='/totry'>
+                <img src="icons8-bookmark-100.png" alt="bookmark" />
+                <br />
                 <b>Creations To Try</b>
               </Link>
             </li>
             <li>
               <Link to='/favorites'>
+                <img src="icons8-favorite-100.png" alt="heart" />
+                <br />
                 <b>Favorites</b>
               </Link>
             </li>
             <li>
               <Link to='/add'>
+                <img src="icons8-add-new-100.png" alt="plus" />
+                <br />
                 <b>Add Creation</b>
               </Link>
             </li>
             <li>
               <Link to='/submitted'>
+                <img src="icons8-google-web-search-100.png" alt="search glass" />
+                <br />
                 <b>Other Chef's Creation's</b>
               </Link>
             </li>
