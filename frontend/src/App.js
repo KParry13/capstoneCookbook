@@ -8,7 +8,7 @@ import LoginPage from "./pages/LoginPage/LoginPage";
 import RegisterPage from "./pages/RegisterPage/RegisterPage";
 import SearchPage from "./pages/SearchPage/SearchPage";
 import UserSubmitted from "./pages/UserSubmitted/UserSubmitted";
-import RecipesToTry from "./pages/RecipesToTry/RecipesToTry";
+import RecipesToTryPage from "./pages/RecipesToTryPage/RecipesToTryPage";
 import FavoritesPage from "./pages/FavoritesPage/FavoritesPage";
 import AddRecipePage from "./pages/AddRecipePage/AddRecipePage";
 import RecipeInfoPage from "./pages/RecipeInfoPage/RecipeInfoPage";
@@ -54,7 +54,7 @@ function App() {
             path="/totry"
             element={
               <PrivateRoute>
-                <RecipesToTry />
+                <RecipesToTryPage />
               </PrivateRoute>
             }
             />

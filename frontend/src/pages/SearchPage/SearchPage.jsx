@@ -18,6 +18,7 @@ const SearchPage = ( ) => {
     const fetchRecipesByName = async () => {
         try {
             let res = await axios.get(
+                // using the or || with the http links will work to fix the multiple search bars
                 `https://www.themealdb.com/api/json/v1/1/search.php?s=${searchByName}`
             )
             setResults(res.data.meals);
