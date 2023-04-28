@@ -77,7 +77,7 @@ function App() {
         <Route path="/register" element={<RegisterPage />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/search" element={<SearchPage />} />
-        {/* <Route path="/recipe/:recipeId" element={<RecipeInfoPage />} /> */}
+        <Route path="/recipe/:recipeIdMeal" element={<RecipeInfoPage />} />
       </Routes>
       <Footer />
     </div>
