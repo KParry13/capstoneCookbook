@@ -3,7 +3,7 @@ import axios from "axios";
 import useAuth from "../../hooks/useAuth";
 import useCustomForm from "../../hooks/useCustomForm";
 
-const RecipeCommentForm = ({recipeIdMeal, fetchComments}) => {
+const RecipeCommentForm = ({recipeIdMeal, fetchRecipeInfo}) => {
     const[user, token] = useAuth()
     const defaultValues = {
         "recipe_id": recipeIdMeal,
@@ -20,7 +20,7 @@ const RecipeCommentForm = ({recipeIdMeal, fetchComments}) => {
                   },
             })
             console.log(res.data)
-            fetchComments()
+            fetchRecipeInfo()
         } catch (error) {
             console.log(error)
         }
@@ -28,9 +28,9 @@ const RecipeCommentForm = ({recipeIdMeal, fetchComments}) => {
 
     return ( 
         <div>
-        <h4>What Others Think...</h4>
+        
             <div>
-                <form>
+                <form onSubmit={handleSubmit}>
                     <label>
                         Comment:{""}
                         <input type="text" name="text" value={formData.text} onChange={handleInputChange} />
@@ -39,7 +39,7 @@ const RecipeCommentForm = ({recipeIdMeal, fetchComments}) => {
                         Rating:{} 
                         <input typer="text" name="rating" value={formData.rating} onChange={handleInputChange} />
                     </label>
-                    <button>{user.username}'s Thoughts...</button>
+                    <button>Your Thoughts...</button>
                 </form>
             </div>
         </div>

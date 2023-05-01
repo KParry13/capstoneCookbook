@@ -3,6 +3,7 @@ import axios from "axios";
 import { useParams } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
 import RecipeInfo from "../../components/RecipeInfo/RecipeInfo";
+import CommentList from "../../components/CommentList/CommentList";
 import RecipeCommentForm from "../../components/RecipeCommentForm/RecipeCommentForm";
 
 const RecipeInfoPage = () => {
@@ -81,26 +82,29 @@ const RecipeInfoPage = () => {
     const fetchComments = async () => {
         try {
             let res = await axios.get(
-                `https://http://127.0.0.1:5000//api/recipes/${recipeIdMeal}`, {
-                    headers: {
-                        Authorization: "Bearer " + token,
-                      }})
+                `http://127.0.0.1:5000//api/recipes/${recipeIdMeal}`)
             setComments(res.data)
             console.log(res.data)
         } catch (error) {
             console.log(error)
         }
     };
-    useEffect(() =>{
-        fetchComments()
-    }, [recipeIdMeal]);
+
+
+
     useEffect(() => {
         fetchRecipeInfo();
     }, [recipeIdMeal]);
+
+    useEffect(() =>{
+    fetchComments()
+}, [recipeIdMeal]);
     return ( 
         <div>
             <RecipeInfo recipeInfo={recipeInfo}  />
-            <RecipeCommentForm recipeIdMeal={recipeIdMeal} fetchComments={fetchComments} />
+            <CommentList comments={comments} />
+            <RecipeCommentForm recipeIdMeal={recipeIdMeal} fetchRecipeInfo={fetchRecipeInfo} />
+            
         </div>
         
 
