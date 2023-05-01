@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
+import useAuth from "../../hooks/useAuth";
 import RecipeInfo from "../../components/RecipeInfo/RecipeInfo";
+import RecipeCommentForm from "../../components/RecipeCommentForm/RecipeCommentForm";
 
 const RecipeInfoPage = () => {
     const {recipeIdMeal} = useParams();
@@ -62,6 +64,8 @@ const RecipeInfoPage = () => {
             "dateModified": null
         }
     );
+    const [comments, setComments] = useState({})
+    const[user, token] = useAuth()
 
     const fetchRecipeInfo = async () => {
         try {
@@ -70,18 +74,33 @@ const RecipeInfoPage = () => {
             )
             setRecipeInfo(res.data.meals[0]);
             console.log(res.data)
-
         } catch (error) {
             console.log(error);
         }
     };
+    const fetchComments = async () => {
+        try {
+            let res = await axios.get(
+                `https://http://127.0.0.1:5000//api/recipes/${recipeIdMeal}`, {
+                    headers: {
+                        Authorization: "Bearer " + token,
+                      }})
+            setComments(res.data)
+            console.log(res.data)
+        } catch (error) {
+            console.log(error)
+        }
+    };
+    useEffect(() =>{
+        fetchComments()
+    }, [recipeIdMeal]);
     useEffect(() => {
         fetchRecipeInfo();
-    }, [recipeIdMeal])
+    }, [recipeIdMeal]);
     return ( 
         <div>
             <RecipeInfo recipeInfo={recipeInfo}  />
-            
+            <RecipeCommentForm recipeIdMeal={recipeIdMeal} fetchComments={fetchComments} />
         </div>
         
 
