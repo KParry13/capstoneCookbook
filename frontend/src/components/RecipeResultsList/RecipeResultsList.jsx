@@ -1,8 +1,9 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { useNavigate, Link } from "react-router-dom";
 import './RecipeResultsList.css'
 
 const RecipeResultsList = ({results }) => {
+
 console.log(results);
 
     return ( 
@@ -15,8 +16,6 @@ console.log(results);
                         <h3> {recipe.strMeal} </h3>
                     </div>
 
-
-                    
                 </Link>
             ))}
         </div>

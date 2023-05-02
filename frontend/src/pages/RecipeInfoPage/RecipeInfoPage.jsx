@@ -6,6 +6,7 @@ import RecipeInfo from "../../components/RecipeInfo/RecipeInfo";
 import CommentList from "../../components/CommentList/CommentList";
 import RecipeCommentForm from "../../components/RecipeCommentForm/RecipeCommentForm";
 
+
 const RecipeInfoPage = () => {
     const {recipeIdMeal} = useParams();
     const [recipeInfo, setRecipeInfo] =useState(
@@ -66,6 +67,8 @@ const RecipeInfoPage = () => {
         }
     );
     const [comments, setComments] = useState({})
+    const [newFav, setNewFav] = useState([])
+    const [addTryNew, setAddTryNew] = useState([])
     const[user, token] = useAuth()
 
     const fetchRecipeInfo = async () => {
@@ -89,8 +92,42 @@ const RecipeInfoPage = () => {
             console.log(error)
         }
     };
-
-
+    async function postNewFavorite() {
+        try{ 
+            const defaultValues = {
+                recipe_id: recipeInfo.idMeal,
+                name: recipeInfo.strMeal,
+                thumbnail_url: recipeInfo.strMealThumb
+            }
+            let res = await axios.post("http://127.0.0.1:5000/api/user_favorites",
+            defaultValues, {
+                headers: {
+                    Authorization: "Bearer " + token,
+                  }})
+                  console.log(res.data)
+                  setNewFav(res.data)
+        } catch (error) {
+            console.log(error)
+        }
+    }; 
+    async function postNewTryLater() {
+        try{ 
+            const defaultValues = {
+                recipe_id: recipeInfo.idMeal,
+                name: recipeInfo.strMeal,
+                thumbnail_url: recipeInfo.strMealThumb
+            }
+            let res = await axios.post("http://127.0.0.1:5000/api/user_try_later",
+            defaultValues, {
+                headers: {
+                    Authorization: "Bearer " + token,
+                  }})
+                  console.log(res.data)
+                  setAddTryNew(res.data)
+        } catch (error) {
+            console.log(error)
+        }
+    }; 
 
     useEffect(() => {
         fetchRecipeInfo();
@@ -101,10 +138,13 @@ const RecipeInfoPage = () => {
 }, [recipeIdMeal]);
     return ( 
         <div>
-            <RecipeInfo recipeInfo={recipeInfo}  />
+            <RecipeInfo recipeInfo={recipeInfo} 
+            postNewFavorite={postNewFavorite} newFav={newFav} 
+            postNewTryLater={postNewTryLater} addTryNew={addTryNew} />
+            
             <CommentList comments={comments} />
             <RecipeCommentForm recipeIdMeal={recipeIdMeal} fetchRecipeInfo={fetchRecipeInfo} />
-            
+           
         </div>
         
 

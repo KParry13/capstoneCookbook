@@ -3,7 +3,7 @@ import { useState } from 'react';
 import axios from "axios";
 import SearchBar from "../../components/SearchBar/SearchBar";
 import RecipeResultsList from "../../components/RecipeResultsList/RecipeResultsList";
-
+import RecipesToTry from "../../components/RecipesToTryList/RecipesToTry";
 
 const SearchPage = ( ) => {
     const [searchByName, setSearchByName] = useState("");
@@ -123,7 +123,7 @@ const SearchPage = ( ) => {
                 handleSubmitByMainIngredient={handleSubmitByMainIngredient} handleSubmitByFoodCategory={handleSubmitByFoodCategory}
                 handleSubmitByFoodEthnicity={handleSubmitByFoodEthnicity} handleSubmitRandom={handleSubmitRandom}
                  />
-
+            <RecipesToTry results={results} />
             <RecipeResultsList results={results}  />
         </div>
      );
