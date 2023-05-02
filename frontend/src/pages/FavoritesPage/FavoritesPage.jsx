@@ -44,10 +44,10 @@ const FavoritesPage = () => {
     <div>
       <FavoritesList
         user={user}
-        favorites={favorites}
-        setFavorites={setFavorites}
+        favorites={favorites} setFavorites={setFavorites}
         fetchDeleteRecipe={fetchDeleteRecipe}
       />
+
     </div>
   );
 };

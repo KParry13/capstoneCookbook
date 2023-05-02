@@ -38,7 +38,7 @@ const RecipeCommentForm = ({recipeIdMeal, fetchRecipeInfo, fetchComments}) => {
                     </label>
                     <label>
                         Rating:{} 
-                        <input typer="text" name="rating" value={formData.rating} onChange={handleInputChange} />
+                        <input type="text" name="rating" value={formData.rating} onChange={handleInputChange} />
                     </label>
                     <button>Your Thoughts...</button>
                 </form>

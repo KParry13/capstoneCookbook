@@ -7,7 +7,7 @@ import HomePage from "./pages/HomePage/HomePage";
 import LoginPage from "./pages/LoginPage/LoginPage";
 import RegisterPage from "./pages/RegisterPage/RegisterPage";
 import SearchPage from "./pages/SearchPage/SearchPage";
-import UserSubmitted from "./pages/UserSubmitted/UserSubmitted";
+import UserSubmittedPage from "./pages/UserSubmittedPage/UserSubmittedPage";
 import RecipesToTryPage from "./pages/RecipesToTryPage/RecipesToTryPage";
 import FavoritesPage from "./pages/FavoritesPage/FavoritesPage";
 import AddRecipePage from "./pages/AddRecipePage/AddRecipePage";
@@ -46,7 +46,7 @@ function App() {
           path="/submitted"
           element={
             <PrivateRoute>
-              <UserSubmitted />
+              <UserSubmittedPage />
             </PrivateRoute>
           }
           />

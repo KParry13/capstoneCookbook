@@ -1,10 +1,6 @@
-import React, {useState} from "react";
-
-// import { useNavigate } from "react-router-dom";
+import React from "react";
 
 const RecipeInfo = ({recipeInfo, postNewFavorite, newFav, postNewTryLater, addTryNew}) => {
-    // const navigate = useNavigate();
-    const [add, setAdd] =useState("active")
 
     var allingredients = []
     for(const key in recipeInfo) {

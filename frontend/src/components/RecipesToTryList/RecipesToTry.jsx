@@ -1,6 +1,7 @@
 import React from 'react';
 
-const RecipesToTry = ({ toTry, fetchDeleteRecipe} ) => {
+
+const RecipesToTry = ({ toTry, fetchDeleteRecipe, newFav, postNewFavorite} ) => {
 
     return ( 
         <div>
@@ -10,7 +11,8 @@ const RecipesToTry = ({ toTry, fetchDeleteRecipe} ) => {
                     <p key={recipe.id}>
                         <img src={recipe.thumbnail_url}></img>
                         {recipe.name}
-                
+                    
+                    <button onClick={() => postNewFavorite(newFav)}>Favorite</button>
                     <button onClick={() => fetchDeleteRecipe(recipe.id)}>Delete</button>
                     </p>
                 ))}
