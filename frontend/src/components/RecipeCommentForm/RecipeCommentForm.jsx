@@ -3,7 +3,7 @@ import axios from "axios";
 import useAuth from "../../hooks/useAuth";
 import useCustomForm from "../../hooks/useCustomForm";
 
-const RecipeCommentForm = ({recipeIdMeal, fetchRecipeInfo}) => {
+const RecipeCommentForm = ({recipeIdMeal, fetchRecipeInfo, fetchComments}) => {
     const[user, token] = useAuth()
     const defaultValues = {
         "recipe_id": recipeIdMeal,
@@ -20,6 +20,7 @@ const RecipeCommentForm = ({recipeIdMeal, fetchRecipeInfo}) => {
                   },
             })
             console.log(res.data)
+            fetchComments()
             fetchRecipeInfo()
         } catch (error) {
             console.log(error)

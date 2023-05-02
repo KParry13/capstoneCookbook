@@ -1,6 +1,6 @@
-import React, {useState} from "react";
+import React from "react";
 
-const FavoritesList = ({user, favorites, fetchDeleteRecipe, deleteRecipe}) => {
+const FavoritesList = ({user, favorites, fetchDeleteRecipe}) => {
 
       
     return ( 
@@ -11,7 +11,7 @@ const FavoritesList = ({user, favorites, fetchDeleteRecipe, deleteRecipe}) => {
             <p key={recipe.id}>
             <img src={recipe.thumbnail_url}></img>
              {recipe.name}
-            <button onClick={() => deleteRecipe}>Delete</button>
+            <button onClick={() => fetchDeleteRecipe(recipe.id)}>Delete</button>
             </p>
             
         ))}

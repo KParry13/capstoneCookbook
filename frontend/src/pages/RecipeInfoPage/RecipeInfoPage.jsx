@@ -143,7 +143,7 @@ const RecipeInfoPage = () => {
             postNewTryLater={postNewTryLater} addTryNew={addTryNew} />
             
             <CommentList comments={comments} />
-            <RecipeCommentForm recipeIdMeal={recipeIdMeal} fetchRecipeInfo={fetchRecipeInfo} />
+            <RecipeCommentForm recipeIdMeal={recipeIdMeal} fetchRecipeInfo={fetchRecipeInfo} fetchComments={fetchComments}/>
            
         </div>
         

@@ -14,13 +14,6 @@ const RecipeInfo = ({recipeInfo, postNewFavorite, newFav, postNewTryLater, addTr
         }
     }
     
-    function handleButtons(){
-        if(add === "active"){
-            setAdd(newFav || addTryNew)
-        } else {
-            setAdd(null)
-        }
-    }
 
     return ( 
         <div>
@@ -32,8 +25,8 @@ const RecipeInfo = ({recipeInfo, postNewFavorite, newFav, postNewTryLater, addTr
             </ul>
             <h5>{recipeInfo.strInstructions}</h5>
            
-            <button type='button' className={add} onClick={() => handleButtons(newFav)}>Favorite</button>
-            <button type='button' className={add} onClick={() => handleButtons(addTryNew)}>Try Later</button>
+            <button onClick={() => postNewFavorite(newFav)}>Favorite</button>
+            <button onClick={() => postNewTryLater(addTryNew)}>Try Later</button>
             
         </div>
      );

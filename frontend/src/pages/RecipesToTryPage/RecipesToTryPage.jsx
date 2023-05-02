@@ -6,6 +6,7 @@ import RecipesToTry from '../../components/RecipesToTryList/RecipesToTry';
 const RecipesToTryPage = ( ) => {
     const [user, token] = useAuth();
     const [toTry, setToTry] = useState([]);
+    const [deleteRecipe, setDeleteRecipe] = useState("");
 
     const fetchTryLater = async () => {
         try {
@@ -21,13 +22,30 @@ const RecipesToTryPage = ( ) => {
         } catch (error) {
             console.log(error.res.data)
         }
-    }
+    };
+
+    async function fetchDeleteRecipe(recipeIdMeal) {
+        let res = await axios.delete(
+          `http://127.0.0.1:5000/api/user_try_later/${recipeIdMeal}`,
+          {
+            headers: {
+              Authorization: "Bearer " + token,
+            },
+          }
+        );
+        if (res.status === 204) {
+          setDeleteRecipe("");
+          fetchTryLater()
+        }
+      };
+
     useEffect(() => {
     fetchTryLater()
-    }, [])
+    }, []);
+
     return ( 
         <div>
-            <RecipesToTry user={user} toTry={toTry}  />
+            <RecipesToTry toTry={toTry} fetchDeleteRecipe={fetchDeleteRecipe} />
             
         </div>
      );
