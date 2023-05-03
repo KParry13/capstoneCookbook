@@ -28,7 +28,7 @@ const HomePage = () => {
   //   fetchCars();
   // }, [token]);
   return (
-    <div className="container">
+    <div >
       {console.log(user)}
       <h1>{user.username}'s Page!</h1>
       {/* {cars &&

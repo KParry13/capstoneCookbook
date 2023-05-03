@@ -1,5 +1,6 @@
 import React from "react";
 
+
 const RecipeInfo = ({recipeInfo, postNewFavorite, newFav, postNewTryLater, addTryNew}) => {
 
     var allingredients = []

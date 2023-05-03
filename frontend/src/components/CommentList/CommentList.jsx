@@ -8,7 +8,7 @@ const CommentList = ({ comments }) => {
             <h4>What Others Think</h4>
             {comments.reviews && comments.reviews.map((item => 
             <p>
-            {item.text} 
+            {item.text} {item.rating}
             </p>
             ))}
         </div>

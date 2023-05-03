@@ -5,7 +5,7 @@ import useAuth from "../../hooks/useAuth";
 import RecipeInfo from "../../components/RecipeInfo/RecipeInfo";
 import CommentList from "../../components/CommentList/CommentList";
 import RecipeCommentForm from "../../components/RecipeCommentForm/RecipeCommentForm";
-import RecipesToTry from "../../components/RecipesToTryList/RecipesToTry";
+
 
 const RecipeInfoPage = () => {
     const {recipeIdMeal} = useParams();
@@ -143,7 +143,7 @@ const RecipeInfoPage = () => {
             postNewTryLater={postNewTryLater} addTryNew={addTryNew} />
             <CommentList comments={comments} />
             <RecipeCommentForm recipeIdMeal={recipeIdMeal} fetchRecipeInfo={fetchRecipeInfo} fetchComments={fetchComments}/>
-            <RecipesToTry postNewFavorite={postNewFavorite} newFav={newFav}  />
+            
         </div>
         
 
