@@ -1,9 +1,9 @@
-import React from 'react'
-import { useNavigate } from "react-router-dom";
+import React from 'react';
 
-const MyRecipesList = ({ userRecipe, fetchDeleteRecipe, }) => {
+
+const MyRecipesList = ({ userRecipe, fetchDeleteRecipe, setEditId }) => {
     console.log(userRecipe)
-    const navigate = useNavigate();
+
     return ( 
 
         <div>
@@ -17,7 +17,7 @@ const MyRecipesList = ({ userRecipe, fetchDeleteRecipe, }) => {
                     {item.instructions} <br/>
                     {item.category}<br/>
                     {item.ethnicity}<br/>
-                    <button>Edit</button>
+                    <button onClick={() => setEditId(item.id)}>Edit</button>
                     <button onClick={() => fetchDeleteRecipe(item.id)}>Delete</button>
                 </li>
                 ))}

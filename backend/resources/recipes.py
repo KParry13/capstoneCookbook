@@ -29,6 +29,27 @@ class UserRecipeListResource(Resource):
         db.session.commit()
         return recipe_schema.dump(new_recipe), 201
     
+class UserEditRecipeResource(Resource):
+    @jwt_required()
+    def get(self, id):
+        user_id = get_jwt_identity()
+        edit_list = Recipe.query.filter_by(id=id)
+        # name = []
+        # ingredients = []
+        # instructions = []
+        # category = []
+        # ethnicity = []
+        for item in edit_list:
+            custom_response = {
+                "id": item.id,
+                "name": item.name,
+                "instructions": item.instructions,
+                "ingredients": item.ingredients,
+                "category": item.category,
+                "ethnicity": item.ethnicity
+            }
+        return recipe_schema.dump(custom_response), 200
+    
 class UserRecipeResource(Resource):
     def get(self, recipe_id):
         comment_list = Comment.query.filter_by(recipe_id=recipe_id).all()

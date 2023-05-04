@@ -1,12 +1,13 @@
+import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import React, { useState } from 'react';
-import useAuth from "../../hooks/useAuth";
 import useCustomForm from "../../hooks/useCustomForm";
+import useAuth from "../../hooks/useAuth";
+import MyRecipesList from '../../components/MyRecipesList/MyRecipesList';
 
-const AddRecipe = ({ fetchUserRecipes }) => {
-    const[user, token] = useAuth()
-    const [newRecipe, setNewRecipe] = useState([])
-    const [uploadImage, setUploadImage] = useState ([])
+
+const EditForm = ({ fetchUserRecipe, editId }) => {
+    const [user, token] = useAuth();
+   
 
     const defaultValues = {
         "name": "",
@@ -16,41 +17,40 @@ const AddRecipe = ({ fetchUserRecipes }) => {
         "ethnicity": ""
     }
 
-    const [formData, handleInputChange, handleSubmit] = useCustomForm(defaultValues, postNewRecipe);
+    const [formData, handleInputChange, handleSubmit, setFormValues] = useCustomForm(defaultValues, putEditRecipe);
 
-    async function postNewRecipe() {
-        try {
-            let res = await axios.post("http://127.0.0.1:5000/api/user_recipe", formData, {
-                headers: {
-                    Authorization: "Bearer " + token,
-                  },
-            })
+    const getId = async () => {
+        let res = await axios.get(
+            `http://127.0.0.1:5000/api/user_recipe/${editId}`, {
+                    headers: {
+                        Authorization: "Bearer " + token,
+                    },
+                })
             console.log(res.data)
-            setNewRecipe()
-            fetchUserRecipes()
-        } catch (error) {
-            console.log(error)
-        }
-    };
-
-    function handleChange(e) {
-        console.log(e.target.images)
-        setUploadImage(URL.createObjectURL(e.target.images[0]))
+            setFormValues(res.data)
+    }
+    async function putEditRecipe(id) {
+        try {
+                let res = await axios.put(`http://127.0.0.1:5000/api/recipes/${editId}`, formData, {
+                    headers: {
+                        Authorization: "Bearer " + token,
+                    },
+                })
+                console.log(res.data)
+                fetchUserRecipe()
+            } catch (error) {
+                console.log(error.res.data)
+            }
     };
     
-
-    
-
+    useEffect(()=>{
+        getId()
+    },[editId])
     return ( 
         <div>
-            
+
             <div>
                 <form onSubmit={handleSubmit}>
-                    <div>
-                        <input type="file" onChange={handleChange} />
-                        <img src={uploadImage} />
-                        
-                    </div>
                     <label>
                         Name: {""}
                         <input type="text" name="name" value={formData.text} onChange={handleInputChange} />
@@ -71,11 +71,11 @@ const AddRecipe = ({ fetchUserRecipes }) => {
                         Ethnicity: {""}
                         <input type="text" name="ethnicity" value={formData.text} onChange={handleInputChange} />
                     </label>
-                    <button>Create!</button>
+                    <button type="submit" >Update</button>
                 </form>
             </div>
         </div>
      );
 }
  
-export default AddRecipe;
+export default EditForm;

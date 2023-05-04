@@ -3,12 +3,13 @@ import axios from 'axios';
 import AddRecipe from '../../components/AddRecipe/AddRecipe';
 import useAuth from "../../hooks/useAuth";
 import MyRecipesList from '../../components/MyRecipesList/MyRecipesList';
+import EditForm from '../../components/EditForm/EditForm';
 
 const AddRecipePage = () => {
     const [user, token] = useAuth();
     const [userRecipe, setUserRecipe] = useState([])
+    const [editId, setEditId] = useState()
     const [deleteRecipe, setDeleteRecipe] = useState("");
-
 
     const fetchUserRecipes = async () => {
         try {
@@ -24,8 +25,6 @@ const AddRecipePage = () => {
             console.log(error.res.data)
         }
     };
-
-
 
     async function fetchDeleteRecipe(id) {
         let res = await axios.delete(
@@ -49,8 +48,11 @@ const AddRecipePage = () => {
     return (
         <div>
             <h2>Your Creations</h2>
-            <AddRecipe fetchUserRecipes={fetchUserRecipes} />
-            <MyRecipesList userRecipe={userRecipe} fetchDeleteRecipe={fetchDeleteRecipe} />
+            <AddRecipe   fetchUserRecipes={fetchUserRecipes} />
+            <MyRecipesList userRecipe={userRecipe} setEditId={setEditId}
+            fetchDeleteRecipe={fetchDeleteRecipe}
+            />
+            <EditForm fetchUserRecipe={fetchUserRecipes} editId={editId} />
         </div>
      );
 }

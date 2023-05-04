@@ -21,7 +21,7 @@ const useCustomForm = (initialValues = {}, onSubmit) => {
     setFormValues(initialValues);
   };
 
-  return [formData, handleInputChange, handleSubmit, reset];
+  return [formData, handleInputChange, handleSubmit, reset, setFormValues];
 };
 
 export default useCustomForm;
