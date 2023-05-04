@@ -6,6 +6,7 @@ import useCustomForm from "../../hooks/useCustomForm";
 const AddRecipe = ({ fetchUserRecipes }) => {
     const[user, token] = useAuth()
     const [newRecipe, setNewRecipe] = useState([])
+    const [editRecipe, setEditRecipe] = useState([])
     const [uploadImage, setUploadImage] = useState ([])
 
     const defaultValues = {
@@ -37,6 +38,22 @@ const AddRecipe = ({ fetchUserRecipes }) => {
         console.log(e.target.images)
         setUploadImage(URL.createObjectURL(e.target.images[0]))
     };
+
+    async function putEditRecipe() {
+        try {
+            let res = await axios.put(`http://127.0.0.1:5000/api/recipes/${editRecipe.id}`, formData, {
+                headers: {
+                    Authorization: "Bearer " + token,
+                  },
+            })
+            setEditRecipe(res.data)
+            fetchUserRecipes()
+            console.log(res.data)
+        } catch (error) {
+            console.log(error.res.data)
+        }
+    };
+
 
     
 

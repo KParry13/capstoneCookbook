@@ -25,23 +25,11 @@ const AddRecipePage = () => {
         }
     };
 
-    // async function putEditRecipe() {
-    //     try {
-    //         let res = await axios.put(`http://127.0.0.1:5000/api/recipes/${id}`, {
-    //             headers: {
-    //                 Authorization: "Bearer " + token,
-    //               },
-    //         })
-    //         setUserRecipe(res.data)
-    //         console.log(res.data)
-    //     } catch (error) {
-    //         console.log(error.res.data)
-    //     }
-    // };
+
 
     async function fetchDeleteRecipe(id) {
         let res = await axios.delete(
-          `http://127.0.0.1:5000/api/user_favorites/${id}`,
+          `http://127.0.0.1:5000/api/recipes/${id}`,
           {
             headers: {
               Authorization: "Bearer " + token,
@@ -61,7 +49,7 @@ const AddRecipePage = () => {
     return (
         <div>
             <h2>Your Creations</h2>
-            <AddRecipe  userRecipe={userRecipe} fetchUserRecipes={fetchUserRecipes} />
+            <AddRecipe fetchUserRecipes={fetchUserRecipes} />
             <MyRecipesList userRecipe={userRecipe} fetchDeleteRecipe={fetchDeleteRecipe} />
         </div>
      );
