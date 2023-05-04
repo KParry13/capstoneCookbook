@@ -6,6 +6,8 @@ import UserSubmittedList from "../../components/UserSubmittedList/UserSubmittedL
 const UserSubmittedPage = () => {
     const [user, token] = useAuth();
     const [userSubmitted, setUserSubmitted] = useState([])
+    const [newFav, setNewFav] = useState([])
+    const [addTryNew, setAddTryNew] = useState([])
 
     const fetchSubmittedRecipes = async () => {
         try {
@@ -18,6 +20,44 @@ const UserSubmittedPage = () => {
         }
     };
 
+    async function postNewFavorite() {
+        try{ 
+            const defaultValues = {
+                recipe_id: id,
+                name: name,
+                thumbnail_url: thumbnail_url
+            }
+            let res = await axios.post("http://127.0.0.1:5000/api/user_favorites",
+            defaultValues, {
+                headers: {
+                    Authorization: "Bearer " + token,
+                  }})
+                  console.log(res.data)
+                  setNewFav(res.data)
+        } catch (error) {
+            console.log(error)
+        }
+    }; 
+
+    async function postNewTryLater() {
+        try{ 
+            const defaultValues = {
+                recipe_id: id,
+                name: name,
+                thumbnail_url: thumbnail_url
+            }
+            let res = await axios.post("http://127.0.0.1:5000/api/user_try_later",
+            defaultValues, {
+                headers: {
+                    Authorization: "Bearer " + token,
+                  }})
+                  console.log(res.data)
+                  setAddTryNew(res.data)
+        } catch (error) {
+            console.log(error)
+        }
+    }; 
+
     useEffect(() => {
     fetchSubmittedRecipes()
     }, []);
@@ -25,7 +65,9 @@ const UserSubmittedPage = () => {
     return (
         <div>
             <h2>Other Chef's Creations</h2>
-            <UserSubmittedList userSubmitted={userSubmitted}  />
+            <UserSubmittedList userSubmitted={userSubmitted} 
+            newFav={newFav} postNewFavorite={postNewFavorite} 
+            postNewTryLater={postNewTryLater} addTryNew={addTryNew} />
         </div>
      );
 }

@@ -1,8 +1,11 @@
 import React from 'react'
+import { useNavigate } from "react-router-dom";
 
-const MyRecipesList = ({ userRecipe }) => {
+const MyRecipesList = ({ userRecipe, putEditRecipe }) => {
     console.log(userRecipe)
+    // const navigate = useNavigate();
     return ( 
+
         <div>
         <ul>
                 {userRecipe && 
@@ -14,6 +17,7 @@ const MyRecipesList = ({ userRecipe }) => {
                     {item.instructions} <br/>
                     {item.category}<br/>
                     {item.ethnicity}<br/>
+                    {/* <button onClick={() => navigate("/add", putEditRecipe)}>Edit</button> */}
                 </li>
                 ))}
         </ul>
@@ -22,3 +26,4 @@ const MyRecipesList = ({ userRecipe }) => {
 }
  
 export default MyRecipesList;
+
