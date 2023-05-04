@@ -10,7 +10,6 @@ const UserSubmittedList = ({ userSubmitted, postNewFavorite, newFav, postNewTryL
                     {userSubmitted && 
                     userSubmitted.map((item =>
                     <li key={item.id}>
-                       {/* Posted By {user.id} */}
                         {item.name} <br/>
                         {item.ingredients}<br/>
                         {item.instructions} <br/>

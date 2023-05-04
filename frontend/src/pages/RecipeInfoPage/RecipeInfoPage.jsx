@@ -129,13 +129,11 @@ const RecipeInfoPage = () => {
         }
     }; 
 
-    useEffect(() => {
-        fetchRecipeInfo();
-    }, [recipeIdMeal]);
-
     useEffect(() =>{
+    fetchRecipeInfo()    
     fetchComments()
 }, [recipeIdMeal]);
+
     return ( 
         <div>
             <RecipeInfo recipeInfo={recipeInfo} 

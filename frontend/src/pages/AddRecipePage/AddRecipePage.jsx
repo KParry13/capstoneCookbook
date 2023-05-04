@@ -7,6 +7,8 @@ import MyRecipesList from '../../components/MyRecipesList/MyRecipesList';
 const AddRecipePage = () => {
     const [user, token] = useAuth();
     const [userRecipe, setUserRecipe] = useState([])
+    const [deleteRecipe, setDeleteRecipe] = useState("");
+
 
     const fetchUserRecipes = async () => {
         try {
@@ -37,6 +39,21 @@ const AddRecipePage = () => {
     //     }
     // };
 
+    async function fetchDeleteRecipe(id) {
+        let res = await axios.delete(
+          `http://127.0.0.1:5000/api/user_favorites/${id}`,
+          {
+            headers: {
+              Authorization: "Bearer " + token,
+            },
+          }
+        );
+        if (res.status === 204) {
+          setDeleteRecipe("");
+          fetchUserRecipes()
+        }
+      }
+
     useEffect(() => {
     fetchUserRecipes()
     }, []);
@@ -45,7 +62,7 @@ const AddRecipePage = () => {
         <div>
             <h2>Your Creations</h2>
             <AddRecipe  userRecipe={userRecipe} fetchUserRecipes={fetchUserRecipes} />
-            <MyRecipesList userRecipe={userRecipe}  />
+            <MyRecipesList userRecipe={userRecipe} fetchDeleteRecipe={fetchDeleteRecipe} />
         </div>
      );
 }

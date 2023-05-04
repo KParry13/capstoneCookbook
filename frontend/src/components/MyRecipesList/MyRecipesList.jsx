@@ -1,9 +1,9 @@
 import React from 'react'
 import { useNavigate } from "react-router-dom";
 
-const MyRecipesList = ({ userRecipe, putEditRecipe }) => {
+const MyRecipesList = ({ userRecipe, putEditRecipe, fetchDeleteRecipe}) => {
     console.log(userRecipe)
-    // const navigate = useNavigate();
+    const navigate = useNavigate();
     return ( 
 
         <div>
@@ -17,7 +17,8 @@ const MyRecipesList = ({ userRecipe, putEditRecipe }) => {
                     {item.instructions} <br/>
                     {item.category}<br/>
                     {item.ethnicity}<br/>
-                    {/* <button onClick={() => navigate("/add", putEditRecipe)}>Edit</button> */}
+                    <button onClick={() => navigate("/add")}>Edit</button>
+                    <button onClick={() => fetchDeleteRecipe(item.id)}>Delete</button>
                 </li>
                 ))}
         </ul>
