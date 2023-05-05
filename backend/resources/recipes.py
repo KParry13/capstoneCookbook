@@ -34,11 +34,7 @@ class UserEditRecipeResource(Resource):
     def get(self, id):
         user_id = get_jwt_identity()
         edit_list = Recipe.query.filter_by(id=id)
-        # name = []
-        # ingredients = []
-        # instructions = []
-        # category = []
-        # ethnicity = []
+
         for item in edit_list:
             custom_response = {
                 "id": item.id,
@@ -179,3 +175,4 @@ class UserTryLaterListResource(Resource):
         db.session.delete(delete_try_later)
         db.session.commit()
         return '', 204
+

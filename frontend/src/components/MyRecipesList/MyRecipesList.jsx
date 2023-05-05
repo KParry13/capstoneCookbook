@@ -27,4 +27,3 @@ const MyRecipesList = ({ userRecipe, fetchDeleteRecipe, setEditId }) => {
 }
  
 export default MyRecipesList;
-

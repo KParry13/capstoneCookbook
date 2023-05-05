@@ -52,7 +52,9 @@ const AddRecipePage = () => {
             <MyRecipesList userRecipe={userRecipe} setEditId={setEditId}
             fetchDeleteRecipe={fetchDeleteRecipe}
             />
-            <EditForm fetchUserRecipe={fetchUserRecipes} editId={editId} />
+            {editId ? <EditForm fetchUserRecipe={fetchUserRecipes} editId={editId} /> : 
+            null}
+            {/* <EditForm fetchUserRecipe={fetchUserRecipes} editId={editId} /> */}
         </div>
      );
 }

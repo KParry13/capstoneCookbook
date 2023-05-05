@@ -2,8 +2,6 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import useCustomForm from "../../hooks/useCustomForm";
 import useAuth from "../../hooks/useAuth";
-import MyRecipesList from '../../components/MyRecipesList/MyRecipesList';
-
 
 const EditForm = ({ fetchUserRecipe, editId }) => {
     const [user, token] = useAuth();
@@ -19,17 +17,18 @@ const EditForm = ({ fetchUserRecipe, editId }) => {
 
     const [formData, handleInputChange, handleSubmit, setFormValues] = useCustomForm(defaultValues, putEditRecipe);
 
-    const getId = async () => {
+    const getId = async (editId) => {
         let res = await axios.get(
-            `http://127.0.0.1:5000/api/user_recipe/${editId}`, {
+            `http://127.0.0.1:5000/api/edit_recipe/${editId}`, {
                     headers: {
                         Authorization: "Bearer " + token,
                     },
                 })
+                console.log(editId)
             console.log(res.data)
             setFormValues(res.data)
     }
-    async function putEditRecipe(id) {
+    async function putEditRecipe() {
         try {
                 let res = await axios.put(`http://127.0.0.1:5000/api/recipes/${editId}`, formData, {
                     headers: {
@@ -44,7 +43,7 @@ const EditForm = ({ fetchUserRecipe, editId }) => {
     };
     
     useEffect(()=>{
-        getId()
+        getId(editId)
     },[editId])
     return ( 
         <div>
