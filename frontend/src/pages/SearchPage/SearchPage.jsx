@@ -5,6 +5,7 @@ import SearchBar from "../../components/SearchBar/SearchBar";
 import RecipeResultsList from "../../components/RecipeResultsList/RecipeResultsList";
 import RecipesToTry from "../../components/RecipesToTryList/RecipesToTry";
 
+
 const SearchPage = ( ) => {
     const [searchByName, setSearchByName] = useState("");
     const [searchByFirstLetter, setSearchByFirstLetter] = useState("");
@@ -111,7 +112,7 @@ const SearchPage = ( ) => {
 
     return ( 
         <div>
-            <h2>Search for a Recipe</h2>
+            
             <SearchBar 
                 searchByName={searchByName} setSearchByName={setSearchByName}  
                 searchByFirstLetter={searchByFirstLetter} setSearchByFirstLetter={setSearchByFirstLetter}

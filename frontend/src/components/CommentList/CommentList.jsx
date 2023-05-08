@@ -6,11 +6,15 @@ const CommentList = ({ comments }) => {
         <div>
             <h5> Average Rating: {comments.average_rating}</h5>
             <h4>What Others Think</h4>
-            {comments.reviews && comments.reviews.map((item => 
-            <p>
-            {item.text} {item.rating}
-            </p>
-            ))}
+                <div className='contain'>
+                    {comments.reviews && comments.reviews.map((item => 
+                    <h5>
+                    {item.text} 
+                    <br></br>
+                    {item.rating} out of five!
+                    </h5>
+                    ))}
+                </div>
         </div>
      );
 }

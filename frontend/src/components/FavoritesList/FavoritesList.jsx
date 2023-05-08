@@ -5,7 +5,7 @@ const FavoritesList = ({user, favorites, fetchDeleteRecipe}) => {
       
     return ( 
         <div>
-            <div>{user.username}'s Favorites!</div>
+            <h2>{user.username}'s Favorites!</h2>
             {favorites &&
             favorites.map((recipe) => (
             <p key={recipe.id}>

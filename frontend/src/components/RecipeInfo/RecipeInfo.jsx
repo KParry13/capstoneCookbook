@@ -13,18 +13,20 @@ const RecipeInfo = ({recipeInfo, postNewFavorite, newFav, postNewTryLater, addTr
     
 
     return ( 
-        <div>
-            <h2>Recipe Card</h2>
+        <div className="contain">
+            <h2> {recipeInfo.strMeal} </h2>
             <img src={recipeInfo.strMealThumb}></img>
-            <h3> {recipeInfo.strMeal} </h3>
-            <ul>
-                {allingredients}
-            </ul>
-            <h5>{recipeInfo.strInstructions}</h5>
-           
-            <button onClick={() => postNewFavorite(newFav)}>Favorite</button>
-            <button onClick={() => postNewTryLater(addTryNew)}>Try Later</button>
-            
+            <div className="recipe">
+                
+                <ul>
+                    {allingredients}
+                </ul>
+                <h5>{recipeInfo.strInstructions}</h5>
+                <div>
+                    <button onClick={() => postNewFavorite(newFav)}>Favorite</button>
+                    <button onClick={() => postNewTryLater(addTryNew)}>Try Later</button>
+                </div>
+            </div>
         </div>
      );
 }

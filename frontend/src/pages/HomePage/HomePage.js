@@ -1,5 +1,5 @@
 import React from "react";
-import { useEffect, useState } from "react";
+import "./HomePage.css"
 import { Link } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
 
@@ -28,9 +28,9 @@ const HomePage = () => {
   //   fetchCars();
   // }, [token]);
   return (
-    <div >
+    <div className="background" >
       {console.log(user)}
-      <h1>{user.username}'s Page!</h1>
+      <h1 className="hph1">{user.username}'s Cookbook!</h1>
       {/* {cars &&
         cars.map((car) => (
           <p key={car.id}>
@@ -38,33 +38,33 @@ const HomePage = () => {
           </p>
         ))} */}
         <div>
-          <ul>
-            <li>
-              <Link to='/totry'>
-                <img src="icons8-bookmark-100.png" alt="bookmark" />
+          <ul className="mxw">
+            <li >
+              <Link to='/totry' style={{ textDecoration: "none", color: "#1B6453" }}>
+                <img className="hpimg" src="icons8-bookmark-100.png" alt="bookmark" />
                 <br />
-                <b>Creations To Try</b>
+                <b className="hpb">Creations To Try</b>
               </Link>
             </li>
             <li>
-              <Link to='/favorites'>
-                <img src="icons8-favorite-100.png" alt="heart" />
+              <Link to='/favorites' style={{ textDecoration: "none", color: "#1B6453" }}>
+                <img className="hpimg" src="icons8-favorite-100.png" alt="heart" />
                 <br />
-                <b>Favorites</b>
+                <b className="hpb">Favorites</b>
               </Link>
             </li>
             <li>
-              <Link to='/add'>
-                <img src="icons8-add-new-100.png" alt="plus" />
+              <Link to='/add' style={{ textDecoration: "none", color: "#1B6453" }}>
+                <img className="hpimg" src="icons8-add-new-100.png" alt="plus" />
                 <br />
-                <b>Add Creation</b>
+                <b className="hpb">Add Creation</b>
               </Link>
             </li>
             <li>
-              <Link to='/submitted'>
-                <img src="icons8-google-web-search-100.png" alt="search glass" />
+              <Link to='/submitted' style={{ textDecoration: "none", color: "#1B6453" }}>
+                <img className="hpimg" src="icons8-google-web-search-100.png" alt="search glass" />
                 <br />
-                <b>Other Chef's Creation's</b>
+                <b className="hpb">Other Chef's Creation's</b>
               </Link>
             </li>
           </ul>

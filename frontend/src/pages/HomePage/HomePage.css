@@ -1,0 +1,24 @@
+.hpb {
+    display: flex;
+    justify-content: center;
+}
+
+.hpimg {
+    height: 150px;
+}
+
+.background {
+    background-color: #EBFAF6;
+}
+
+/* .mxw {
+    max-width: 1000px;
+    
+} */
+
+.hph1{
+    margin:.5rem;
+    padding-top: .3rem;
+    display:flex;
+    justify-content: center;
+}

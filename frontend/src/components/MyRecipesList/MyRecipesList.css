@@ -1,0 +1,41 @@
+.actions {
+    display: flex;
+    flex-direction: row-reverse;
+    margin: 5px;
+}
+
+.container {
+    box-sizing: border-box;
+    margin: .1rem;
+    padding: .1rem;
+    background-color: #EBFAF6;
+}
+
+.recipe {
+    border: solid;
+    padding: .2rem;
+    border-color: #1B6453;
+    border-width: medium;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.myRecipes{
+    display: flex;
+    flex-direction: column;
+}
+
+.header {
+    margin: .5rem;
+}
+
+.body {
+    margin: .1rem;
+}
+
+button {
+    margin: .125rem;
+    color: #1B6453;
+    outline: #1B6453;
+}

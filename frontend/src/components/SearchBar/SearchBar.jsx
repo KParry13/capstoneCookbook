@@ -11,7 +11,8 @@ const SearchBar = ({searchByName = "", setSearchByName,
 
 
     return ( 
-        <div>
+        <div className='container-1'>
+            <h2>Search for a Recipe</h2>
             <form onSubmit={(e) => handleSubmitByName(e)} className="searchForm">
                 <input type="text" placeholder="By Name" value={searchByName} onChange={(e) => setSearchByName(e.target.value)} />
                 <button type="submit">Go</button>

@@ -1,0 +1,27 @@
+.contain {
+    box-sizing: border-box;
+    margin: .1rem;
+    padding: .1rem;
+    background-color: #EBFAF6;
+}
+
+.actions {
+    display: flex;
+    flex-direction: row-reverse;
+    margin: 5px;
+}
+
+.card {
+    border: solid;
+    padding: .2rem;
+    border-color: #1B6453;
+    border-width: medium;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.recipes{
+    display: flex;
+    flex-direction: column;
+}
