@@ -13,6 +13,8 @@ const MyRecipesList = ({ userRecipe, fetchDeleteRecipe, setEditId }) => {
                     {/* Posted By {user.id} */}
                     <h3 className='header'>{item.name} <br/></h3>
                     <div className='body'>
+                        {item.image_url ? <img src={`http://127.0.0.1:5000/static/upload/${item.image_url}`} />: null}
+                        
                         {item.ingredients}<br />
                         {item.instructions}<br/>
                         {item.category}<br/>

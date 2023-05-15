@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import useCustomForm from "../../hooks/useCustomForm";
 import useAuth from "../../hooks/useAuth";
+import "./EditForm.css"
 
 const EditForm = ({ fetchUserRecipe, editId }) => {
     const [user, token] = useAuth();

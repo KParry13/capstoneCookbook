@@ -1,8 +1,16 @@
-from flask import request
+from flask import Flask, request, current_app
+
+from werkzeug.utils import secure_filename
 from flask_jwt_extended import jwt_required, get_jwt_identity, verify_jwt_in_request
 from flask_restful import Resource
 from database.models import db, Recipe, Comment, Favorite, TryLater
 from database.schemas import recipe_schema, recipes_schema, comment_schema, comments_schema, favorite_schema, favorites_schema, try_later_schema,try_laters_schema
+
+ALLOWED_EXTENSIONS = set(['txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif'])
+# app = Flask(__name__)
+# app_root = os.path.dirname(os.path.abspath(__file__))
+# upload_folder = os.path.join(app_root, "upload")
+# app.config['UPLOAD_FOLDER'] = upload_folder
 
 class AllRecipeResource(Resource):
     def get(self):
@@ -18,17 +26,28 @@ class UserRecipeListResource(Resource):
         user_id = get_jwt_identity()
         user_recipes = Recipe.query.filter_by(user_id=user_id)
         return recipes_schema.dump(user_recipes), 200
-        
+    
     @jwt_required()
     def post(self):
         user_id = get_jwt_identity()
-        form_data = request.get_json()
+        file_upload = request.files['image_url']
+        filename = secure_filename(file_upload.filename)
+        destination = "/".join([current_app.config['UPLOAD_FOLDER'], filename])
+        file_upload.save(destination)
+        form_data = {
+            'name': request.form.get("name"),
+            'ingredients': request.form.get("ingredients"),
+            'instructions': request.form.get("instructions"),
+            'category': request.form.get("category"),
+            'ethnicity': request.form.get("ethnicity")
+        }
         new_recipe = recipe_schema.load(form_data)
         new_recipe.user_id = user_id
+        new_recipe.image_url = filename
         db.session.add(new_recipe)
-        db.session.commit()
+        db.session.commit()        
         return recipe_schema.dump(new_recipe), 201
-    
+
 class UserEditRecipeResource(Resource):
     @jwt_required()
     def get(self, id):
@@ -175,5 +194,3 @@ class UserTryLaterListResource(Resource):
         db.session.delete(delete_try_later)
         db.session.commit()
         return '', 204
-    
-    

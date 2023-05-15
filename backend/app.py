@@ -8,9 +8,10 @@ from database.models import db
 from database.schemas import ma
 from resources.auth import LoginResource, RegisterResource
 from resources.cars import AllCarResource, UserCarResource
-from resources.recipes import AllRecipeResource, UserRecipeListResource, UserEditRecipeResource, UserRecipeResource, UserCommentsResource, UserCommentListResource, UserFavoritesResource, UserFavoriteListResource, UserTryLaterResource, UserTryLaterListResource 
+from resources.recipes import AllRecipeResource, UserRecipeListResource, UserEditRecipeResource, UserRecipeResource, UserCommentsResource, UserCommentListResource, UserFavoritesResource, UserFavoriteListResource, UserTryLaterResource, UserTryLaterListResource
 from dotenv import load_dotenv
 from os import environ
+import os
 
 # Adds variables from .env file to environment
 load_dotenv()
@@ -31,6 +32,9 @@ def create_app():
     # Loads config properties from .env file
     app.config['SQLALCHEMY_DATABASE_URI'] = environ.get('SQLALCHEMY_DATABASE_URI')
     app.config['JWT_SECRET_KEY'] = environ.get('JWT_SECRET_KEY')
+    app_root = os.path.dirname(os.path.abspath(__file__))
+    upload_folder = os.path.join(app_root, "static/upload")
+    app.config['UPLOAD_FOLDER'] = upload_folder
 
     # Registers all routes with API
     api = create_routes()
@@ -67,5 +71,4 @@ def create_routes():
     api.add_resource(UserFavoriteListResource, '/api/user_favorites/<int:favorite_id>')
     api.add_resource(UserTryLaterResource, '/api/user_try_later')
     api.add_resource(UserTryLaterListResource, '/api/user_try_later/<int:try_later_id>')
-    
     return api

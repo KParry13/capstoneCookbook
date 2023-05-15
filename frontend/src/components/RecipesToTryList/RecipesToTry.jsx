@@ -13,7 +13,7 @@ const RecipesToTry = ({ toTry, fetchDeleteRecipe } ) => {
                     <p key={recipe.id}>
                             <img src={recipe.thumbnail_url}></img>
                             {recipe.name}
-                            <button>Info</button>
+                            <button>Recipe</button>
                         
                     </p>
                     </Link>

@@ -38,23 +38,3 @@ class UserCarResource(Resource):
         db.session.commit()
         return car_schema.dump(new_car), 201
     
-
-    
-# ALLOWED_EXTENSIONS = set(['txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif'])
-# app = Flask(__name__)
-# app.config['UPLOAD_FOLDER'] = 'fileupload-react-flask/server/upload'
-# class UserUploadImage(Resource):
-
-#     @jwt_required
-#     def post(self):
-#         user_id = get_jwt_identity()
-#         form_data = request.get_json()
-#         file_upload = recipe_schema.load(form_data)
-#         file_upload.user_id = user_id
-#         filename = secure_filename(file_upload.filename)
-#         file_upload.save(os.path.join(app.config[' UPLOAD_FOLDER'], filename))
-#         db.session.add(file_upload)
-#         db.session.commit()
-#         return recipe_schema.dump(file_upload), 201
-        
-    # api.add_resource(UserUploadImage,  '/api/upload_image')

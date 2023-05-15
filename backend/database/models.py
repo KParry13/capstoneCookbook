@@ -38,6 +38,7 @@ class Recipe(db.Model):
     instructions = db.Column(db.Text, nullable=False)
     category = db.Column(db.String(255))
     ethnicity = db.Column(db.String(255))
+    image_url = db.Column(db.Text)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
     user = db.relationship("User")
 

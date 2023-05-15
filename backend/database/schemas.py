@@ -66,10 +66,11 @@ class RecipeSchema(ma.Schema):
     instructions = fields.String(nullable=False)
     category = fields.String()
     ethnicity = fields.String()
+    image_url = fields.String()
     user_id = fields.Integer()
     user = ma.Nested(UserSchema, many=False)
     class Meta:
-        fields = ("id", "name", "ingredients", "instructions", "category", "ethnicity", "user_id", "user")
+        fields = ("id", "name", "ingredients", "instructions", "category", "ethnicity", "image_url", "user_id", "user")
 
     @post_load
     def create_recipe(self, data, **kwargs):
