@@ -9,7 +9,7 @@ services:
     image: kparry/cookbook-frontend:1.0.0
 
   cookbook-database:
-    build: ./database
+    build: ./backend/database
     ports:
       - 3307:3306
     environment:
