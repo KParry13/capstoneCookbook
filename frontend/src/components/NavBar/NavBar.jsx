@@ -16,11 +16,31 @@ const Navbar = () => {
           </Link>
         </li>
         <li>
-        <Link to="/search" style={{ textDecoration: "none", color: "white" }}>
-          <button>Search</button>
-        </Link>
-        </li>
-        <li>
+          <Link to="/search" style={{ textDecoration: "none", color: "white" }}>
+            <button>Search</button>
+          </Link>
+        {/* </li>
+        <li> */}
+          <Link to="/totry" style={{ textDecoration: "none", color: "white" }}>
+            <button>Recipes To Try</button>
+          </Link>
+        {/* </li>
+        <li> */}
+          <Link to="/favorites" style={{ textDecoration: "none", color: "white" }}>
+            <button>Favorite Recipes</button>
+          </Link>
+        {/* </li>
+        <li> */}
+          <Link to="/add" style={{ textDecoration: "none", color: "white" }}>
+            <button>Add Creations</button>
+          </Link>
+        {/* </li>
+        <li> */}
+          <Link to="/submitted" style={{ textDecoration: "none", color: "white" }}>
+            <button>Chefs Submitted</button>
+          </Link>
+        {/* </li>
+        <li> */}
           {user ? (
             <button onClick={logoutUser}>Logout</button>
           ) : (

@@ -4,12 +4,14 @@ const UserSubmittedList = ({ userSubmitted, postNewFavorite, newFav, postNewTryL
     console.log(userSubmitted)
 
 
+
     return (
         <div className='contain'>
             <ul className='recipes'>
                 {userSubmitted && 
                 userSubmitted.map((item =>
                 <li className='card' key={item.id}>
+                    {item.image_url ? <img src={`http://127.0.0.1:5000/static/upload/${item.image_url}`} />: null}
                     {item.name} <br/>
                     {item.ingredients}<br/>
                     {item.instructions} <br/>

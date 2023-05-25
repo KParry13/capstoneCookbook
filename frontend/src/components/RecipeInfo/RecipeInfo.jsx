@@ -10,7 +10,8 @@ const RecipeInfo = ({recipeInfo, postNewFavorite, newFav, postNewTryLater, addTr
             allingredients.push(<li>{recipeInfo[key]} </li>)
         }
     }
-    
+
+
 
     return ( 
         <div className="contain">

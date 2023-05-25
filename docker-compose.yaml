@@ -1,0 +1,33 @@
+version: '3.1'
+services: 
+  cookbook-frontend:
+    build: ./frontend
+    ports:
+      - 8080:8080
+    command: >
+      sh -c "npm start"
+    image: kparry/cookbook-frontend:1.0.0
+
+  cookbook-database:
+    build: ./database
+    ports:
+      - 3307:3306
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+    restart: always
+    volumes:
+      - db-data:/var/lib/mysql
+    image: kparry/cookbook-database:1.0.0
+
+  cookbook-backend:
+    build: ./backend
+    ports:
+      - 5000:5000
+    restart: always
+    depends_on:
+      - "cookbook-database"
+    command: >
+      sh -c "flask db upgrade && flask run --host=0.0.0.0"
+    image: kparry/cookbook-backend:1.0.0
+volumes:
+  db-data:

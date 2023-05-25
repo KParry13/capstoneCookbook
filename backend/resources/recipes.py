@@ -7,10 +7,7 @@ from database.models import db, Recipe, Comment, Favorite, TryLater
 from database.schemas import recipe_schema, recipes_schema, comment_schema, comments_schema, favorite_schema, favorites_schema, try_later_schema,try_laters_schema
 
 ALLOWED_EXTENSIONS = set(['txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif'])
-# app = Flask(__name__)
-# app_root = os.path.dirname(os.path.abspath(__file__))
-# upload_folder = os.path.join(app_root, "upload")
-# app.config['UPLOAD_FOLDER'] = upload_folder
+
 
 class AllRecipeResource(Resource):
     def get(self):
@@ -89,6 +86,8 @@ class UserRecipeResource(Resource):
         edit_recipe = Recipe.query.get_or_404(recipe_id)
         if "recipe_id" in request.json:
             edit_recipe.recipe_id=request.json["recipe_id"]
+        if "image_url" in request.json:
+            edit_recipe.image_url=request.json["image_url"]
         if "name" in request.json:
             edit_recipe.name=request.json["name"]
         if "ingredients" in request.json:

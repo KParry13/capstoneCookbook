@@ -60,8 +60,6 @@ const AddRecipe = ({ fetchUserRecipes }) => {
                 <form onSubmit={handleSubmit}>
                     <div>
                         <input type="file" onChange={(e) => setUploadImage(e.target.files[0])} />
-                        
-                        
                     </div>
                     <label>
                         Name: {""}
