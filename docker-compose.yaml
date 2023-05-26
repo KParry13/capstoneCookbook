@@ -3,7 +3,7 @@ services:
   cookbook-frontend:
     build: ./frontend
     ports:
-      - 8080:8080
+      - 8080:80
     command: >
       sh -c "npm start"
     image: kparry/cookbook-frontend:1.0.0
