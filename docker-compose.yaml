@@ -3,9 +3,9 @@ services:
   cookbook-frontend:
     build: ./frontend
     ports:
-      - 8080:80
-    command: >
-      sh -c "npm start"
+      - 80:80
+    depends_on:
+      - "cookbook-backend"
     image: kparry/cookbook-frontend:1.0.0
 
   cookbook-database:
