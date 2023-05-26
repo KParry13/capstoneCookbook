@@ -1,7 +1,8 @@
 version: '3.1'
 services: 
   cookbook-frontend:
-    build: ./frontend
+    stdin_open: true
+    # build: ./frontend
     ports:
       - 80:80
     depends_on:
@@ -9,7 +10,7 @@ services:
     image: kparry/cookbook-frontend:1.0.0
 
   cookbook-database:
-    build: ./backend/database
+    # build: ./backend/database
     ports:
       - 3307:3306
     environment:
@@ -20,7 +21,7 @@ services:
     image: kparry/cookbook-database:1.0.0
 
   cookbook-backend:
-    build: ./backend
+    # build: ./backend
     ports:
       - 5000:5000
     restart: always
